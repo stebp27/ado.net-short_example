@@ -71,7 +71,7 @@ namespace Ado.net_example
             {
                 foreach (var author in authors)
                 {
-                    author.ToString();
+                    Console.WriteLine(author.ToString());
                 }
             }
             else
@@ -87,7 +87,7 @@ namespace Ado.net_example
             {
                 foreach (var book in books)
                 {
-                    book.ToString();
+                    Console.WriteLine(book.ToString());
                 }
             }
             else
@@ -103,7 +103,7 @@ namespace Ado.net_example
             Author author = processor.FindAuthorById(id);
             if(author != null)
             {
-                author.ToString();
+                Console.WriteLine(author.ToString());
             }
             else
             {
@@ -118,7 +118,7 @@ namespace Ado.net_example
             Book book = processor.FindBookById(id);
             if (book != null)
             {
-                book.ToString();
+                Console.WriteLine(book.ToString());
             }
             else
             {
@@ -131,7 +131,7 @@ namespace Ado.net_example
             Console.WriteLine("Please enter the new author's full name: ");
             string fullName = Console.ReadLine();
             Author author = processor.InsertAuthor(new Author(fullName));
-            author.ToString();
+            Console.WriteLine(author.ToString());
         }
 
         public void InsertBook()
@@ -148,7 +148,7 @@ namespace Ado.net_example
             }
             int authorId = int.Parse(input);
             Book book = processor.InsertBook(new Book(title, authorId));
-            book.ToString();
+            Console.WriteLine(book.ToString());
         }
         public void DeleteAuthor()
         {

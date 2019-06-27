@@ -12,17 +12,17 @@ namespace Ado.net_example
             Initial Catalog=AdoExampleDB;Integrated Security=True;";
 
         public const string ALL_AUTHORS_QUERY =
-            @"select * from dbo.Authors";
+            @"select Id, FullName from dbo.Authors";
 
         public const string ALL_BOOKS_QUERY =
-            @"select * from dbo.Books";
+            @"select Id, Title, AuthorId from dbo.Books";
 
         public const string INSERT_AUTHOR_QUERY =
-            @"insert into dbo.Authors output INSERTED.ID
+            @"insert into dbo.Authors (FullName) output INSERTED.Id
             values (@FullName)";
 
         public const string INSERT_BOOK_QUERY =
-            @"insert into dbo.Books output INSERTED.ID
+            @"insert into dbo.Books (Title,AuthorId) output INSERTED.Id
             values (@Title, @AuthorId)";
 
         public const string DELETE_AUTHOR_QUERY =
