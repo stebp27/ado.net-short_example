@@ -6,7 +6,8 @@ namespace Ado.net_example
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var UI = new UserInterface(new DataProcessor(new DBDataSource()));
+            UI.MainMenu();
         }
     }
 }

@@ -4,21 +4,25 @@ using System.Text;
 
 namespace Ado.net_example
 {
-    class Author
+    public class Author
     {
-        public Author(int id, string firstName, string lastName)
+        public int Id { get; set; }
+        public string FullName { get; set; }
+
+        public Author(string fullName)
         {
-            Id = id;
-
-            FirstName = firstName;
-
-            LastName = lastName;
-
+            FullName = fullName;
         }
 
-        public int Id { get; set; }
-        public string FirstName { get; set; }
+        public Author(int id, string fullName)
+        {
+            Id = id;
+            FullName = fullName;
+        }
 
-        public string LastName { get; set; }
+        public override string ToString()
+        {
+            return $"Id: {Id}; Name: {FullName}\n";
+        }
     }
 }

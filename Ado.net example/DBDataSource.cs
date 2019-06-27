@@ -19,7 +19,7 @@ namespace Ado.net_example
 
         public const string INSERT_AUTHOR_QUERY =
             @"insert into dbo.Authors output INSERTED.ID
-            values (@FirstName, @LastName)";
+            values (@FullName)";
 
         public const string INSERT_BOOK_QUERY =
             @"insert into dbo.Books output INSERTED.ID
@@ -42,13 +42,12 @@ namespace Ado.net_example
                 {
                     SqlDataReader reader = command.ExecuteReader();
                     var posId = reader.GetOrdinal("Id");
-                    var posFirstName = reader.GetOrdinal("FirstName");
-                    var posLastName = reader.GetOrdinal("LastName");
+                    var posFullName = reader.GetOrdinal("FullName");
 
                     var authors = new List<Author>();
                     while(reader.Read())
                     {
-                        var author = new Author(reader.GetInt32(posId), reader.GetString(posFirstName), reader.GetString(posLastName));
+                        var author = new Author(reader.GetInt32(posId), reader.GetString(posFullName));
                         authors.Add(author);
                     }
                     return authors;
@@ -112,8 +111,7 @@ namespace Ado.net_example
                 connection.Open();
                 using(SqlCommand command = new SqlCommand(INSERT_AUTHOR_QUERY, connection))
                 {
-                    command.Parameters.AddWithValue("@FirstName", author.FirstName);
-                    command.Parameters.AddWithValue("@LastName", author.LastName);
+                    command.Parameters.AddWithValue("@FullName", author.FullName);
 
                     int id = (int)command.ExecuteScalar();
                     author.Id = id;
@@ -129,8 +127,8 @@ namespace Ado.net_example
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(INSERT_BOOK_QUERY, connection))
                 {
-                    command.Parameters.AddWithValue("@FirstName", book.Title);
-                    command.Parameters.AddWithValue("@LastName", book.AuthorId);
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@AuthorId", book.AuthorId);
 
                     int id = (int)command.ExecuteScalar();
                     book.Id = id;

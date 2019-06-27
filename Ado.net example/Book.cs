@@ -4,8 +4,18 @@ using System.Text;
 
 namespace Ado.net_example
 {
-    class Book
+    public class Book
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public int AuthorId { get; set; }
+
+        public Book(string title, int authorId)
+        {
+            Title = title;
+            AuthorId = authorId;
+        }
+
         public Book(int id, string title, int authorId)
         {
             Id = id;
@@ -13,13 +23,9 @@ namespace Ado.net_example
             AuthorId = authorId;
         }
 
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public int AuthorId { get; set; }
-
         public override string ToString()
         {
-            return $"ID: {Id}; Title: {Title}; Author: {AuthorId}";
+            return $"ID: {Id}; Title: {Title}; AuthorId: {AuthorId}\n";
         }
     }
 }
